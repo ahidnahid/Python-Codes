@@ -1,0 +1,17 @@
+m=4
+n=3
+matrix = []
+
+for i in range(n):
+    row = []
+    for j in range(m):
+        element = input()
+        row.append(element)
+    matrix.append(row)
+
+
+for i in range(n):
+    for j in range(m):
+        print(f"{matrix[i][j]}", end=" ")
+    print()
+
