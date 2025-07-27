@@ -1,0 +1,61 @@
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #fefefe;
+            color: #333;
+            margin: 20px;
+        }
+        .container {
+            border: 2px solid #ccc;
+            padding: 20px;
+            max-width: 900px;
+            margin: auto;
+            background: #fff8f0;
+        }
+        h1 {
+            text-align: center;
+            color: #8B4513;
+        }
+        img.profile {
+            width: 150px;
+            border-radius: 50%;
+            border: 3px solid #8B4513;
+        }
+        .section {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 2px solid #8B4513;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border: 1px solid #8B4513;
+        }
+        .highlight {
+            background-color: #ffe4c4;
+            font-weight: bold;
+        }
+        a {
+            color: #8B0000;
+        }
+        form {
+            margin-top: 20px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 10px;
+            border: 1px solid #aaa;
+        }
+        input[type="submit"] {
+            background-color: #8B4513;
+            color: white;
+            border: none;
+        }
+    

@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Marriage Bio-Data Form</title>
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            margin-top: 5px;
+            display: none;
+        }
+        .invalid {
+            border: 1px solid red !important;
+        }
+        .valid {
+            border: 1px solid green !important;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        #submitError {
+            color: red;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Marriage Bio-Data Form</h1>
+        
+        <form id="biodataForm" action="save_data.php" method="post" enctype="multipart/form-data" novalidate>
+            <!-- Personal Information -->
+            <div class="section">
+                <h2>👤 Personal Information</h2>
+                <div class="form-group">
+                    <label for="name">Full Name:</label>
+                    <input type="text" id="name" name="name" required minlength="3" maxlength="100">
+                    <span class="error-message" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="dob">Date of Birth:</label>
+                    <input type="date" id="dob" name="dob" required>
+                    <span class="error-message" id="dobError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="gender">Gender:</label>
+                    <select id="gender" name="gender" required>
+                        <option value="">Select</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                    </select>
+                    <span class="error-message" id="genderError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="marital_status">Marital Status:</label>
+                    <select id="marital_status" name="marital_status" required>
+                        <option value="">Select</option>
+                        <option value="Single">Single</option>
+                        <option value="Divorced">Divorced</option>
+                        <option value="Widowed">Widowed</option>
+                    </select>
+                    <span class="error-message" id="maritalStatusError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="religion">Religion:</label>
+                    <input type="text" id="religion" name="religion" required minlength="2">
+                    <span class="error-message" id="religionError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="height">Height:</label>
+                    <input type="text" id="height" name="height" placeholder="e.g., 5 feet 10 inches" required>
+                    <span class="error-message" id="heightError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="blood_group">Blood Group:</label>
+                    <input type="text" id="blood_group" name="blood_group" required>
+                    <span class="error-message" id="bloodGroupError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="profile_pic">Profile Picture:</label>
+                    <input type="file" id="profile_pic" name="profile_pic" accept="image/*">
+                    <span class="error-message" id="profilePicError"></span>
+                </div>
+            </div>
+
+            <!-- Family Details -->
+            <div class="section">
+                <h2>👨‍👩‍👧‍👦 Family Details</h2>
+                <div class="form-group">
+                    <label for="father_name">Father's Name:</label>
+                    <input type="text" id="father_name" name="father_name" required>
+                    <span class="error-message" id="fatherNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="father_job">Father's Occupation:</label>
+                    <input type="text" id="father_job" name="father_job" required>
+                    <span class="error-message" id="fatherJobError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="mother_name">Mother's Name:</label>
+                    <input type="text" id="mother_name" name="mother_name" required>
+                    <span class="error-message" id="motherNameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="mother_job">Mother's Occupation:</label>
+                    <input type="text" id="mother_job" name="mother_job" required>
+                    <span class="error-message" id="motherJobError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="siblings">Siblings:</label>
+                    <input type="text" id="siblings" name="siblings" placeholder="e.g., 2 brothers, 1 sister" required>
+                    <span class="error-message" id="siblingsError"></span>
+                </div>
+            </div>
+
+            <!-- Education -->
+            <div class="section">
+                <h2>🎓 Education</h2>
+                <div class="form-group">
+                    <label for="highest_degree">Highest Degree:</label>
+                    <input type="text" id="highest_degree" name="highest_degree" required>
+                    <span class="error-message" id="highestDegreeError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="institute">Institute:</label>
+                    <input type="text" id="institute" name="institute" required>
+                    <span class="error-message" id="instituteError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="graduation_year">Year of Graduation:</label>
+                    <input type="number" id="graduation_year" name="graduation_year" required min="1900" max="2099">
+                    <span class="error-message" id="graduationYearError"></span>
+                </div>
+            </div>
+
+            <!-- Hobbies and Interests -->
+            <div class="section">
+                <h2>🎸 Hobbies and Interests</h2>
+                <div class="form-group">
+                    <label for="hobbies">Hobbies:</label>
+                    <input type="text" id="hobbies" name="hobbies" placeholder="e.g., Reading, Guitar, Painting" required>
+                    <span class="error-message" id="hobbiesError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="interests">Interests:</label>
+                    <input type="text" id="interests" name="interests" placeholder="e.g., Traveling, Photography" required>
+                    <span class="error-message" id="interestsError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="favorite_food">Favorite Food:</label>
+                    <input type="text" id="favorite_food" name="favorite_food" required>
+                    <span class="error-message" id="favoriteFoodError"></span>
+                </div>
+            </div>
+
+            <!-- Career -->
+            <div class="section">
+                <h2>💼 Career</h2>
+                <div class="form-group">
+                    <label for="job">Profession:</label>
+                    <input type="text" id="job" name="job" required>
+                    <span class="error-message" id="jobError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="company">Company:</label>
+                    <input type="text" id="company" name="company" required>
+                    <span class="error-message" id="companyError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="location">Location:</label>
+                    <input type="text" id="location" name="location" required>
+                    <span class="error-message" id="locationError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="income">Yearly Income:</label>
+                    <input type="text" id="income" name="income" required>
+                    <span class="error-message" id="incomeError"></span>
+                </div>
+            </div>
+
+            <!-- Contact Details -->
+            <div class="section">
+                <h2>📞 Contact Details</h2>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <span class="error-message" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                    <span class="error-message" id="phoneError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address:</label>
+                    <textarea id="address" name="address" rows="3" required></textarea>
+                    <span class="error-message" id="addressError"></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Submit Bio-Data">
+                <div id="submitError"></div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.getElementById('biodataForm');
+            
+            // Validate on submit
+            form.addEventListener('submit', function(event) {
+                if (!validateForm()) {
+                    event.preventDefault();
+                    document.getElementById('submitError').textContent = 'Please fix the errors in the form before submitting.';
+                } else {
+                    document.getElementById('submitError').textContent = '';
+                }
+            });
+            
+            // Real-time validation on blur
+            form.querySelectorAll('input, select, textarea').forEach(element => {
+                element.addEventListener('blur', function() {
+                    validateField(this);
+                });
+            });
+            
+            // Immediate validation for file upload
+            document.getElementById('profile_pic').addEventListener('change', function() {
+                validateFile(this);
+            });
+            
+            // Validate email as user types
+            document.getElementById('email').addEventListener('input', function() {
+                validateField(this);
+            });
+            
+            // Validate phone as user types
+            document.getElementById('phone').addEventListener('input', function() {
+                validateField(this);
+            });
+        });
+        
+        function validateForm() {
+            let isValid = true;
+            const form = document.getElementById('biodataForm');
+            
+            // Validate all required fields
+            form.querySelectorAll('[required]').forEach(field => {
+                if (!validateField(field)) {
+                    isValid = false;
+                }
+            });
+            
+            // Additional custom validations
+            if (!validateEmail(document.getElementById('email').value)) {
+                showError('emailError', 'Please enter a valid email address');
+                document.getElementById('email').classList.add('invalid');
+                isValid = false;
+            }
+            
+            if (!validatePhone(document.getElementById('phone').value)) {
+                showError('phoneError', 'Please enter a valid phone number');
+                document.getElementById('phone').classList.add('invalid');
+                isValid = false;
+            }
+            
+            if (!validateDate(document.getElementById('dob').value)) {
+                showError('dobError', 'Please enter a valid date (YYYY-MM-DD)');
+                document.getElementById('dob').classList.add('invalid');
+                isValid = false;
+            }
+            
+            return isValid;
+        }
+        
+        function validateField(field) {
+            const errorElement = document.getElementById(field.id + 'Error');
+            let isValid = true;
+            let message = '';
+            
+            // Clear previous error
+            hideError(errorElement);
+            field.classList.remove('invalid');
+            field.classList.remove('valid');
+            
+            // Check required fields
+            if (field.required && !field.value.trim()) {
+                message = 'This field is required';
+                isValid = false;
+            }
+            
+            // Field-specific validations
+            if (field.id === 'email' && field.value && !validateEmail(field.value)) {
+                message = 'Invalid email format';
+                isValid = false;
+            }
+            
+            if (field.id === 'phone' && field.value && !validatePhone(field.value)) {
+                message = 'Invalid phone number';
+                isValid = false;
+            }
+            
+            if (field.id === 'dob' && field.value && !validateDate(field.value)) {
+                message = 'Invalid date format (YYYY-MM-DD)';
+                isValid = false;
+            }
+            
+            if (field.id === 'graduation_year' && field.value) {
+                const year = parseInt(field.value);
+                if (isNaN(year) || year < 1900 || year > new Date().getFullYear() + 5) {
+                    message = 'Please enter a valid year (1900-' + (new Date().getFullYear() + 5) + ')';
+                    isValid = false;
+                }
+            }
+            
+            // Update error message and styling
+            if (!isValid) {
+                showError(errorElement, message);
+                field.classList.add('invalid');
+            } else if (field.value.trim() !== '') {
+                field.classList.add('valid');
+            }
+            
+            return isValid;
+        }
+        
+        function validateFile(fileInput) {
+            const errorElement = document.getElementById('profilePicError');
+            const file = fileInput.files[0];
+            let isValid = true;
+            let message = '';
+            
+            // Clear previous error
+            hideError(errorElement);
+            fileInput.classList.remove('invalid');
+            fileInput.classList.remove('valid');
+            
+            if (file) {
+                // Check file size (2MB max)
+                if (file.size > 2 * 1024 * 1024) {
+                    message = 'File too large (max 2MB)';
+                    isValid = false;
+                }
+                
+                // Check file type
+                const validTypes = ['image/jpeg', 'image/png', 'image/gif'];
+                if (!validTypes.includes(file.type)) {
+                    message = 'Only JPG, PNG or GIF files allowed';
+                    isValid = false;
+                }
+            }
+            
+            // Update error message and styling
+            if (!isValid) {
+                showError(errorElement, message);
+                fileInput.classList.add('invalid');
+            } else if (file) {
+                fileInput.classList.add('valid');
+            }
+            
+            return isValid;
+        }
+        
+        function showError(elementId, message) {
+            const errorElement = document.getElementById(elementId);
+            if (errorElement) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+            }
+        }
+        
+        function hideError(element) {
+            if (element) {
+                element.textContent = '';
+                element.style.display = 'none';
+            }
+        }
+        
+        // Helper validation functions
+        function validateEmail(email) {
+            const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return re.test(String(email).toLowerCase());
+        }
+        
+        function validatePhone(phone) {
+            const re = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+            return re.test(String(phone));
+        }
+        
+        function validateDate(dateString) {
+            const regEx = /^\d{4}-\d{2}-\d{2}$/;
+            if (!dateString.match(regEx)) return false;
+            const d = new Date(dateString);
+            return !isNaN(d.getTime());
+        }
+    </script>
+</body>
+</html>
